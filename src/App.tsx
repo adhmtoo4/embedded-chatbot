@@ -45,7 +45,7 @@ const App = () => {
 		if(org_tokens_str){
 			isSelected = JSON.parse(org_tokens_str).isSelected;
 		};
-		const response = await fetch(`${process.env.URL_SSL || 'https://await-demo.pretest.ai'}/embedded_chatbot_question`, {
+		const response = await fetch(`${process.env.URL_SSL || 'https://await-uat.pretest.ai'}/embedded_chatbot_question`, {
 			method: "POST",
 			headers: {
 				Accept: 'text/event-stream,application/json',
