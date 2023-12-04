@@ -1,3 +1,4 @@
+
 // import React from 'react';
 // import './App.css';
 
@@ -15,10 +16,8 @@
 
 import React, {useState, useEffect} from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { TelegramChatIcon } from "./styles/icons/icons";
-import { MessageSimple } from "./message";
-import CloseIcon from '@mui/icons-material/Close';
 import { Message } from "./models/common";
+import Chat from "./Chat";
 
 const App = () => {
 	const [message, setMessage] = useState('');
@@ -28,8 +27,8 @@ const App = () => {
 		message_id: '0'
 	}]);
   const [isAnswerLoading, setIsAnswerLoading] = useState(false);
-  const [isShowChat, setIsShowChat] = useState(false);
   const [error, setError] = useState("");
+	const [isChatOpen, setIsChatOpen]= useState(false)
 
   	const onSentQuestion = async () => {
 		setIsAnswerLoading(true)
@@ -162,89 +161,21 @@ const App = () => {
 	
 
   return (
-    <div className="chat wrapper">
-      <div className="chat__header">
-        <div className="chat__title">Try Your KB here</div>
-				<button type="button" onClick={() => setIsShowChat(false)} style={{marginLeft: 'auto'}}><CloseIcon /></button>
-      </div>
-      
-			<div className="chat__body">
-        <div className="chat__messages" style={{paddingBottom: '50px'}}>
-					{messages.map(({message_id, message_text, sender_name}:any) => {
-						return "User" === sender_name ? (
-							<div
-								className={`flex flex-col items-end item-message`}
-								key={message_id}
-								id={message_id}
-							> 
-								<MessageSimple
-									message={message_text}
-									// userName={user.fullName}
-									// profilePicture={user.photoUrl}
-									isUser
-								/>
-							</div>
-						) : (
-							<div 
-								className={`flex flex-col items-start item-message`}
-								key={message_id}
-								id={message_id}
-							>
-								<MessageSimple
-									message={message_text}
-									// userName={user.fullName}
-									// profilePicture={user.photoUrl}
-									isUser={false}
-								/>
-							</div>);
-					}
-					)}
-
-				</div>
-
-				{isAnswerLoading
-					? <div className='flex flex-col items-start loading'>
-							<div>
-								<div className='message-container'>
-									<div>
-										{/* <img src={robot} /> */}
-									</div>
-
-									<div className='message'>
-										<div className='text ai' style={{padding: '10px 30px'}}>
-											<div className="dot-flashing"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						: <></>}
-
-						
-        <div className="chat__input">
-          {/* <div className="chat__icon">
-            <AttachFileIcon />
-          </div> */}
-
-	        <textarea
-						placeholder="Type message here"
-						value={message}
-						onChange={(e) => setMessage(e.target.value)}
-					>
-					</textarea>
-            <button
-							className="chat__icon"
-							type="button"
-							disabled={message.trim().length===0}
-							onClick={onSend}
-						>
-              <TelegramChatIcon />
-            </button>
-        </div>
-      
+		<>
+			<div className="circle" onClick={() => setIsChatOpen(!isChatOpen)}>
+				{!isChatOpen ? "?" : <span className="close-icon"></span>}
 			</div>
-    </div>
-    );
+			{isChatOpen &&
+				<Chat
+					messages={messages}
+					isAnswerLoading={isAnswerLoading}
+					message={message}
+					setMessage={setMessage}
+					onSend={onSend}
+				/>
+			}
+		</>
+  );
 };
 
 export default App;
