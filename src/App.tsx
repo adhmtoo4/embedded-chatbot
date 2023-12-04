@@ -29,7 +29,6 @@ const App = () => {
 	}]);
   const [isAnswerLoading, setIsAnswerLoading] = useState(false);
   const [isShowChat, setIsShowChat] = useState(false);
-  const [selectedKnowledgeBase, setSelectedKnowledgeBase] = useState(null);
   const [error, setError] = useState("");
 
   	const onSentQuestion = async () => {
@@ -52,8 +51,6 @@ const App = () => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-        // WHAT INFO SHOULD WE SEND?
-				"knowledgebases": [selectedKnowledgeBase],
 				"question": tempQuestion,
 				messages,
         is_org: false,
