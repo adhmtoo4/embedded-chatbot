@@ -5,8 +5,7 @@ export const MessageSimple = ({message, isUser, profilePicture, userName}:any) =
 		<div className="">
 			<div className={`message-container ${isUser ? 'user' : ''}`}>
 				<div>
-					{!isUser && <img src={'/robot.png'} className='robot-md' />
-					}
+					{!isUser && <div className='robot-md'></div>}
 						
 				</div>
 				{message &&
