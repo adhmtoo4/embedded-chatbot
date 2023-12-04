@@ -56,6 +56,7 @@ const App = () => {
 				"knowledgebases": [selectedKnowledgeBase],
 				"question": tempQuestion,
 				messages,
+        is_org: false,
 			})
 		});
 
