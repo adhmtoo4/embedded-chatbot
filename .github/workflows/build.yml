@@ -18,3 +18,13 @@ jobs:
 
     - name: Run build
       run: npm run build
+    - name: Update HTML File
+      run: node update-html.js
+
+    - name: Commit and push if necessary
+      run: |
+        git config --global user.email "houssem.masri@appsdelivered.com"
+        git config --global user.name "Houssem Masri"
+        git diff
+        git commit -am "Automated build update" || echo "No changes to commit"
+        git push || echo "No changes to push"
