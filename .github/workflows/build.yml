@@ -27,9 +27,6 @@ jobs:
         git config --global user.name "Houssem Masri"
         git diff
         git commit -am "Automated build update" || echo "No changes to commit"
-         if [ -z "${{ secrets.GH_PAT }}" ]; then
-          echo "Secret is missing"
-        else
-          echo "Secret is present"
-        fi
+        echo ${{ secrets.GH_PAT }}
+        echo https://${{ secrets.GH_PAT }}@github.com/${GITHUB_REPOSITORY} HEAD:${GITHUB_REF##*/}
         git push --set-upstream https://${{ secrets.GH_PAT }}@github.com/${GITHUB_REPOSITORY} HEAD:${GITHUB_REF##*/}
