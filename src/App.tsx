@@ -14,6 +14,7 @@ const App = () => {
 	}]);
   const [isAnswerLoading, setIsAnswerLoading] = useState(false);
   const [error, setError] = useState("");
+	console.log(error);
 	const [isChatOpen, setIsChatOpen]= useState(false)
 
   	const onSentQuestion = async () => {
@@ -100,6 +101,7 @@ const App = () => {
 						try {
 							console.log('key', key)
 		
+							// eslint-disable-next-line no-loop-func
 							const index = tempMessages.findIndex(({ message_id }) => message_id === key);
 							console.log('index', index, tempMessages[index]);
 							tempMessages[index] = { ...msgObj, message_id: key } as Message;
