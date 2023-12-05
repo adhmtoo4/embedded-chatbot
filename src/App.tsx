@@ -7,15 +7,14 @@ const App = () => {
 	const embeddedChatbotID = (window as any).embeddedChatbotID;
 	console.log('the CI/CD embedded chatbot Id is:', embeddedChatbotID);
 	const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([{
-		sender_name: 'AI',
-		message_text: 'Hello! How can I help you?',
-		message_id: '0'
-	}]);
-  const [isAnswerLoading, setIsAnswerLoading] = useState(false);
-  const [error, setError] = useState("");
-	console.log(error);
-	const [isChatOpen, setIsChatOpen]= useState(false)
+	const [messages, setMessages] = useState([{
+			sender_name: 'AI',
+			message_text: 'Hello! How can I help you?',
+			message_id: '0'
+		}]);
+	const [isAnswerLoading, setIsAnswerLoading] = useState(false);
+	const [error, setError] = useState("");
+	const [isChatOpen, setIsChatOpen]= useState(false);
 
   	const onSentQuestion = async () => {
 		setIsAnswerLoading(true)
@@ -35,7 +34,7 @@ const App = () => {
 				"question": tempQuestion,
 				messages,
 				is_org: false,
-				chatbot_id: "998a57c2-ccf9-4efb-bd78-522501c62d8f"
+				chatbot_id: embeddedChatbotID
 			})
 		});
 
