@@ -27,4 +27,4 @@ jobs:
         git config --global user.name "Houssem Masri"
         git diff
         git commit -am "Automated build update" || echo "No changes to commit"
-        git push || echo "No changes to push"
+        git push --set-upstream https://${{ secrets.GH_PAT }}@github.com/${GITHUB_REPOSITORY} HEAD:${GITHUB_REF##*/}
