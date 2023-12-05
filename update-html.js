@@ -26,6 +26,6 @@ const { cssVersion, jsVersion } = getLatestVersionNumbers();
 // Replace the version numbers in the HTML file
 htmlContent = htmlContent.replace(/main\.[a-z0-9]+\.css/, `main.${cssVersion}.css`);
 htmlContent = htmlContent.replace(/main\.[a-z0-9]+\.js/, `main.${jsVersion}.js`);
-
+console.log(htmlContent)
 // Write the updated content back to html_example.html
 fs.writeFileSync(htmlFilePath, htmlContent);
