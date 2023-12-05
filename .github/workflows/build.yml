@@ -18,15 +18,14 @@ jobs:
 
     - name: Run build
       run: npm run build
+
     - name: Update HTML File
       run: node update-html.js
 
-    - name: Commit and push if necessary
-      run: |
-        git config --global user.email "houssem.masri@appsdelivered.com"
-        git config --global user.name "Houssem Masri"
-        git diff
-        git commit -am "Automated build update" || echo "No changes to commit"
-        echo ${{ secrets.GH_PAT }}
-        echo https://${{ secrets.GH_PAT }}@github.com/${GITHUB_REPOSITORY} HEAD:${GITHUB_REF##*/}
-        git push https://${{ secrets.GH_PAT }}@github.com/adhmtoo4/embedded-chatbot.git HEAD:master
+    - name: Commit and Push Changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_user_name: Houssem Masri
+        commit_user_email: houssem.masri@appsdelivered.com
+        commit_message: Automated build update
+        file_pattern: build/ html_example.html  # Specify paths to commit
