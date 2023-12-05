@@ -1,19 +1,3 @@
-
-// import React from 'react';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <h2 className="App-header">Embedded chatbot</h2>
-//       <button onClick={() => console.log('button clicked')}>Button</button>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
 import React, {useState, useEffect} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Message } from "./models/common";
@@ -40,12 +24,7 @@ const App = () => {
 		setMessages(tempMessages);
 		setMessage('')
 		
-		let isSelected = false;
-		const org_tokens_str = localStorage.getItem('org_tokens');
-		if(org_tokens_str){
-			isSelected = JSON.parse(org_tokens_str).isSelected;
-		};
-		const response = await fetch(`${process.env.URL_SSL || 'https://await-uat.pretest.ai'}/embedded_chatbot_question`, {
+		const response = await fetch(`${process.env.REACT_APP_URL_SSL || 'https://await-uat.pretest.ai'}/embedded_chatbot_question`, {
 			method: "POST",
 			headers: {
 				Accept: 'text/event-stream,application/json',
@@ -54,7 +33,8 @@ const App = () => {
 			body: JSON.stringify({
 				"question": tempQuestion,
 				messages,
-        is_org: false,
+				is_org: false,
+				chatbot_id: "998a57c2-ccf9-4efb-bd78-522501c62d8f"
 			})
 		});
 
