@@ -5,7 +5,7 @@ import Chat from "./Chat";
 
 const App = () => {
 	const embeddedChatbotID = (window as any).embeddedChatbotID;
-	console.log('the embedded chatbot Id is:', embeddedChatbotID);
+	console.log('the CI/CD embedded chatbot Id is:', embeddedChatbotID);
 	const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([{
 		sender_name: 'AI',
