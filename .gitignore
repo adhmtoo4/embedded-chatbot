@@ -94,3 +94,5 @@ yarn-error.log*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+build/static/media/back_img.a626f9d5ccbb7ce068dc.png
+build/static/media/robot.f540019c5cd743e58930.png

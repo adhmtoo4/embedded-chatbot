@@ -100,7 +100,7 @@ button {
 	z-index: 1;
 	display: flex;
 	flex-direction: column;
-	background: url("./styles/img/back_img.png") center/cover;
+	background: url("https://cdn.jsdelivr.net/gh/adhmtoo4/embedded-chatbot@1.0.2/build/static/media/back_img.a626f9d5ccbb7ce068dc.png") center/cover;
 	background-repeat: repeat;
 }
 
@@ -809,7 +809,7 @@ img.inactive {
 	width: 50px;
 	height: 50px;
 	background-position-x: center;
-	background-image: url('./styles/img/robot.png');
+	background-image: url('https://cdn.jsdelivr.net/gh/adhmtoo4/embedded-chatbot@1.0.2/build/static/media/robot.f540019c5cd743e58930.png');
 	margin-right: 10px;
 }
 
