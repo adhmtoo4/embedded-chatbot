@@ -29,4 +29,4 @@ jobs:
         git commit -am "Automated build update" || echo "No changes to commit"
         echo ${{ secrets.GH_PAT }}
         echo https://${{ secrets.GH_PAT }}@github.com/${GITHUB_REPOSITORY} HEAD:${GITHUB_REF##*/}
-        git push --set-upstream https://${{ secrets.GH_PAT }}@github.com/${GITHUB_REPOSITORY} HEAD:${GITHUB_REF##*/}
+        git push https://${{ secrets.GH_PAT }}@github.com/adhmtoo4/embedded-chatbot.git HEAD:master
