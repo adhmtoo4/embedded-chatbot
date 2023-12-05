@@ -9,7 +9,7 @@ const buildDirPath = path.join(__dirname, 'build', 'static');
 function getLatestVersionNumbers() {
     const cssFiles = fs.readdirSync(path.join(buildDirPath, 'css'));
     const jsFiles = fs.readdirSync(path.join(buildDirPath, 'js'));
-
+    console.log(cssFiles, jsFiles)
     // Assuming filenames are like 'main.VERSION.css' or 'main.VERSION.js'
     const cssVersion = cssFiles.find(file => file.startsWith('main.') && file.endsWith('.css')).split('.')[1];
     const jsVersion = jsFiles.find(file => file.startsWith('main.') && file.endsWith('.js')).split('.')[1];
