@@ -18,6 +18,7 @@ let htmlContent = fs.readFileSync(htmlFilePath, 'utf8');
 
 const { cssVersion, jsVersion } = getLatestVersionNumbers();
 console.log('After', cssVersion, jsVersion)
+console.log('pre-Html', htmlContent)
 // Update the version numbers in the HTML content
 htmlContent = htmlContent.replace(/main\.[a-z0-9]+\.css/, `main.${cssVersion}.css`);
 htmlContent = htmlContent.replace(/main\.[a-z0-9]+\.js/, `main.${jsVersion}.js`);
