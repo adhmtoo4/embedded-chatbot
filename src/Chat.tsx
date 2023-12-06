@@ -3,6 +3,7 @@ import { MessageSimple } from "./message";
 import { TelegramChatIcon } from "./styles/icons/icons";
 
 const chatSize = (window as any).chatSize || "medium";
+console.log('chatSize', chatSize);
 
 const loadStyle = async (chatSize: "small" | "medium" | "large") => {
     if (chatSize === 'small') {
