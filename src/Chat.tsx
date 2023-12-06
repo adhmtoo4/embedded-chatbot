@@ -2,27 +2,12 @@ import React from "react";
 import { MessageSimple } from "./message";
 import { TelegramChatIcon } from "./styles/icons/icons";
 
-const chatSize = (window as any).chatSize || "medium";
-console.log('chatSize', chatSize);
-
-const loadStyle = async (chatSize: "small" | "medium" | "large") => {
-    if (chatSize === 'small') {
-        return await import('./styles/small_chat.css');
-    };
-	if (chatSize === 'medium') {
-        return await import('./styles/medium_chat.css');
-    };
-	if (chatSize === 'large'){
-        return await import('./styles/large_chat.css');
-    };
-};
-
-loadStyle(chatSize);
+const chatSize = (window as any).chatSize || "large";
 
 export default function Chat ({messages, isAnswerLoading, message, setMessage, onSend}:any) {
 	
 	return(
-		<div className="chat wrapper">
+		<div className={`chat wrapper ${chatSize === 'small' ? "wrapper-small" : chatSize === 'medium' ? "wrapper-medium": "wrapper-large"}`}>
 		<div className="chat__header">
 			<div className="chat__title large__title">Try Your KB here</div>
 		</div>

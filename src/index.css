@@ -73,6 +73,20 @@ button {
 	max-width: 400px!important;
 }
 
+.chat.wrapper-large {
+	width: 370px;
+	height: 650px;
+}
+
+.chat.wrapper-medium {
+	width: 340px;
+	height: 550px;
+}
+
+.chat.wrapper-small {
+	width: 300px;
+    height: 450px;
+}
 
 .chat .chat__header {
 	text-align: center;

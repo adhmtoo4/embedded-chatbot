@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkembedded_chatbot=self.webpackChunkembedded_chatbot||[]).push([[327],{327:(e,d,t)=>{t.r(d),t.d(d,{default:()=>b});const b={}}}]);
-//# sourceMappingURL=327.0c8c001b.chunk.js.map
