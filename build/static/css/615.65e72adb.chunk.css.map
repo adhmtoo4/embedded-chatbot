@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/615.65e72adb.chunk.css","mappings":"AAAA,mBACC,cAAe,CACf,eACD,CAEA,cAEI,YAAa,CADhB,WAED","sources":["styles/small_chat.css"],"sourcesContent":[".chat .chat__title {\r\n\tfont-size: 20px;\r\n\tfont-weight: 600;\r\n}\r\n\r\n.chat.wrapper {\r\n\twidth: 300px;\r\n    height: 450px;\r\n}"],"names":[],"sourceRoot":""}
