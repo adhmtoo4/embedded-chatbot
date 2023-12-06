@@ -817,12 +817,27 @@ img.inactive {
 }
 
 .robot-md {
-	background-size: 50px;
-	width: 50px;
-	height: 50px;
 	background-position-x: center;
 	background-image: url('https://cdn.jsdelivr.net/gh/adhmtoo4/embedded-chatbot@1.0.2/build/static/media/robot.f540019c5cd743e58930.png');
 	margin-right: 10px;
+}
+
+.robot-md-large {
+	width: 50px;
+	height: 50px;
+	background-size: 50px 50px; 
+}
+
+.robot-md-medium {
+	width: 40px;
+	height: 40px;
+	background-size: 40px 40px; 
+}
+
+.robot-md-small {
+	width: 30px;
+	height: 30px;
+	background-size: 30px 30px; 
 }
 
 

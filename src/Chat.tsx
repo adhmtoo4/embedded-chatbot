@@ -22,6 +22,7 @@ export default function Chat ({messages, isAnswerLoading, message, setMessage, o
 							id={message_id}
 						> 
 							<MessageSimple
+								chatSize={chatSize}
 								message={message_text}
 								// userName={user.fullName}
 								// profilePicture={user.photoUrl}
@@ -35,6 +36,7 @@ export default function Chat ({messages, isAnswerLoading, message, setMessage, o
 							id={message_id}
 						>
 							<MessageSimple
+								chatSize={chatSize}
 								message={message_text}
 								// userName={user.fullName}
 								// profilePicture={user.photoUrl}
