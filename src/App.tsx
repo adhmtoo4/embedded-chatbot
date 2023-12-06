@@ -14,6 +14,7 @@ const App = () => {
 		}]);
 	const [isAnswerLoading, setIsAnswerLoading] = useState(false);
 	const [error, setError] = useState("");
+	console.log(error);
 	const [isChatOpen, setIsChatOpen]= useState(false);
 
   	const onSentQuestion = async () => {
