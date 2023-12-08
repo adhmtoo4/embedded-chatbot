@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Sources from "./Sources";
 
-export const MessageSimple = ({message, isUser, profilePicture, userName, chatSize}:any) => {
+export const MessageSimple = ({message_text, isUser, profilePicture, userName, chatSize}:any) => {
+	const [message, setMessage] = useState<string>('');
+	const [sources, setSources] = useState<string>('');
+	useEffect(() => {
+		
+		if(message_text === null){
+			return;
+		}
+		const result: any = message_text?.match(/STARTSOURCES([\s\S]*?)STOPSOURCES/);
+		if (result) {
+			let tempMessage = message_text.replaceAll(result[0], '');
+			setMessage(tempMessage);
+			setSources(result[1])
+		} else {
+			setMessage(message_text)
+		}
+	}, [message_text])
+	console.log('message,', sources);
 	return (
 		<div className="">
 			<div className={`message-container ${isUser ? 'user' : ''}`}>
@@ -18,6 +36,11 @@ export const MessageSimple = ({message, isUser, profilePicture, userName, chatSi
 					</div>
 				}			
 				</div>
+				{sources && (
+							<div className="bg-indigo-100 rounded-sm px-3 py-2 mt-2">
+								<Sources sources={sources} />
+							</div>
+						)}
     </div>
 	)
 }

@@ -5,7 +5,6 @@ import { TelegramChatIcon } from "./styles/icons/icons";
 const chatSize = (window as any).chatSize || "large";
 
 export default function Chat ({messages, isAnswerLoading, message, setMessage, onSend}:any) {
-	
 	return(
 		<div className={`chat wrapper ${chatSize === 'small' ? "wrapper-small" : chatSize === 'medium' ? "wrapper-medium": "wrapper-large"}`}>
 		<div className="chat__header">
@@ -23,7 +22,7 @@ export default function Chat ({messages, isAnswerLoading, message, setMessage, o
 						> 
 							<MessageSimple
 								chatSize={chatSize}
-								message={message_text}
+								message_text={message_text}
 								// userName={user.fullName}
 								// profilePicture={user.photoUrl}
 								isUser
@@ -37,7 +36,7 @@ export default function Chat ({messages, isAnswerLoading, message, setMessage, o
 						>
 							<MessageSimple
 								chatSize={chatSize}
-								message={message_text}
+								message_text={message_text}
 								// userName={user.fullName}
 								// profilePicture={user.photoUrl}
 								isUser={false}

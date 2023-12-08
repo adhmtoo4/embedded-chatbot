@@ -4,18 +4,24 @@ import { Message } from "./models/common";
 import Chat from "./Chat";
 
 const App = () => {
-	const embeddedChatbotID = (window as any).embeddedChatbotID || "123";
+	const embeddedChatbotID = (window as any).embeddedChatbotID || "d4392904-a2b1-4d1a-bf0e-c024fdd5d708";
 	const [message, setMessage] = useState('');
-	const [messages, setMessages] = useState([{
+	const [messages, setMessages] = useState(() => {
+		const savedMessages = localStorage.getItem('chatMessages');
+		return savedMessages ? JSON.parse(savedMessages) : [{
 			sender_name: 'AI',
 			message_text: 'Hello! How can I help you?',
 			message_id: '0'
-		}]);
+		}];
+	});
 	const [isAnswerLoading, setIsAnswerLoading] = useState(false);
 	const [error, setError] = useState("");
 	console.log(error);
 	const [isChatOpen, setIsChatOpen]= useState(false);
-
+	useEffect(() => {
+		localStorage.setItem('chatMessages', JSON.stringify(messages));
+	}, [messages]);
+	
   	const onSentQuestion = async () => {
 		setIsAnswerLoading(true)
 		const tempQuestion:any = message;
@@ -23,8 +29,7 @@ const App = () => {
 		const tempMessages = [...messages, {message_text: message, sender_name: "User", message_id: uuidv4()}];
 		setMessages(tempMessages);
 		setMessage('')
-		
-		const response = await fetch(`${process.env.REACT_APP_URL_SSL || 'https://await-uat.pretest.ai'}/embedded_chatbot_question`, {
+		const response = await fetch(`${process.env.REACT_APP_URL_SSL || 'https://dev.await.ai'}/embedded_chatbot_question`, {
 			method: "POST",
 			headers: {
 				Accept: 'text/event-stream,application/json',
@@ -61,40 +66,27 @@ const App = () => {
 			if (done) break;
 			let chunk = decoder.decode(value);
 
-			console.log('chun ', chunk.trim().split('data: ').filter((ele) => ele !== '' && !ele.includes('[DONE]')).map((ele: any) => {
-				ele = ele.trim();
-				if (ele.charAt(ele.length - 1) === '}') {
-					try {
-						return JSON.parse(ele).choices[0].delta.content;
-					} catch (error) {
-						console.error('JSON Parsing Error:', error);
-					}
-				}
-				return '';
-			}).join(''));
 			if (chunk) {
-				if (!chunk.startsWith('[sources]')) {
-					if (!chunk.startsWith('data:')) chunk = `{data: {"id":"${chunk}`;
-					formattedChunk = chunk.trim().split('data: ').filter((ele) => ele !== '' && !ele.includes('[DONE]')).map((ele: any) => {
-						ele = ele.trim();
-						if (ele.charAt(ele.length - 1) === '}') {
-							try {
-								return JSON.parse(ele).choices[0].delta.content;
-							} catch (error) {
-								console.error('JSON Parsing Error:', error);
-							}
-						}
-						return '';
-					}).join('');
-				} else {
-					formattedChunk = chunk;
-				}
-				console.log('form ', formattedChunk)
-				result += formattedChunk;
-				console.log('rest ', result);
-				const msgObj: any = { sender_name: 'AI', message_text: result.replaceAll('AI:', '').replace('data: data: [DONE]', ''), prompt: tempQuestion };
-
-				if(result){
+					if (!chunk.startsWith('STARTSOURCES')) {
+							if (!chunk.startsWith('data:')) chunk = `{data: {"id":"${chunk}`;
+							formattedChunk = chunk.trim().split('data: ').filter((ele) => ele !== '' && !ele.includes('[DONE]')).map((ele: any) => {
+									ele = ele.trim();
+									if (ele.charAt(ele.length - 1) === '}') {
+											try {
+													return JSON.parse(ele)?.choices?.[0]?.delta?.content ?? '';
+											} catch (error) {
+													console.error('JSON Parsing Error:', error);
+											}
+									}
+									return '';
+							}).join('');
+					} else {
+							formattedChunk = chunk;
+					}
+					console.log('form ', formattedChunk)
+					result += formattedChunk;
+					console.log('rest ', result);
+					const msgObj: any = { sender_name: 'AI', message_text: result.replaceAll('AI:', '').replace('data: data: [DONE]', ''), prompt: tempQuestion };
 					if (key) {
 						// If key exists, update the message
 						try {
@@ -119,7 +111,6 @@ const App = () => {
 					console.log('tempo', tempMessages);
 					setMessages([...tempMessages]);
 					setIsAnswerLoading(false)
-				}
 			}
 		}
 		setIsAnswerLoading(false)
